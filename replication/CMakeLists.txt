@@ -4,7 +4,7 @@ project(Replication VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(UReplication)
+add_library(UReplication STATIC)
 
 add_subdirectory(src)
-target_include_directories(include)
+target_include_directories(UReplication PUBLIC include)

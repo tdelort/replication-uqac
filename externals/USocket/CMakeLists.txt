@@ -5,6 +5,7 @@ include(FetchContent)
 FetchContent_Declare(
   USocket
   GIT_REPOSITORY https://github.com/tdelort/TP-Socket-Berkeley.git
+  GIT_TAG v1.0
 )
 
 FetchContent_MakeAvailable(USocket)

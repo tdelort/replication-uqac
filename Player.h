@@ -1,12 +1,17 @@
 #pragma once
 
+#include "framework.h"
 #include <NetworkObject.h>
+
+#include <string>
 
 namespace uqac::game
 {
-    class Player : public NetworkObject
+    class Player : public uqac::replication::NetworkObject
     {
     public:
+        enum {ClassID = 'PLAY'};
+
         Vector3D m_position; // X Y entre -500 et 500 et Z entre 0 et 100
         Quaternion m_rotation;
         Vector3D m_taille; 

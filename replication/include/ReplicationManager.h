@@ -9,10 +9,10 @@ namespace uqac::replication
 	class ReplicationManager
 	{
 	private:
-		std::unordered_set<NetworkObject> m_obj;
+		std::unordered_set<NetworkObject*> m_obj;
 		LinkingContext m_context;
 	public:
-		ReplicationManager(std::unordered_set<NetworkObject> m_obj, LinkingContext context);
+		ReplicationManager();
 		~ReplicationManager();
 
 		void Update();

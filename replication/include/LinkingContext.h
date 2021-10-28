@@ -1,9 +1,10 @@
 #pragma once
 
+#include "NetworkObject.h"
+#include <map>
+
 namespace uqac::replication 
 {
-	class NetworkObject;
-
 	class LinkingContext
 	{
 	private:
@@ -14,11 +15,11 @@ namespace uqac::replication
 		LinkingContext(std::map<NetworkId, NetworkObject*> idToObj, std::map<NetworkObject*, NetworkId> objToId);
 		~LinkingContext();
 
-		AddLink(NetworkObject* obj, NetworkId id);
-		DeleteObj(NetworkObject* obj);
-		AddObj(NetworkObject* obj);
+		void AddLink(NetworkObject* obj, NetworkId id);
+		void DeleteObj(NetworkObject* obj);
+		void AddObj(NetworkObject* obj);
 
-		LinkedId(NetworkObject* obj);
-		LinkedObj(NetworkId id);
+		void LinkedId(NetworkObject* obj);
+		void LinkedObj(NetworkId id);
 	};
 }

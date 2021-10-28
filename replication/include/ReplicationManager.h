@@ -1,11 +1,11 @@
 #pragma once
 
 #include "LinkingContext.h"
+#include "NetworkObject.h"
+#include <unordered_set>
 
 namespace uqac::replication
 {
-	class NetworkObject;
-
 	class ReplicationManager
 	{
 	private:
@@ -15,6 +15,6 @@ namespace uqac::replication
 		ReplicationManager(std::unordered_set<NetworkObject> m_obj, LinkingContext context);
 		~ReplicationManager();
 
-		Update();
+		void Update();
 	};
 }

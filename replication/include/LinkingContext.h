@@ -12,7 +12,7 @@ namespace uqac::replication
 		std::map<NetworkId, NetworkObject*> m_idToObj;
 		std::map<NetworkObject*, NetworkId> m_objToId;
 	public:
-		LinkingContext(std::map<NetworkId, NetworkObject*> idToObj, std::map<NetworkObject*, NetworkId> objToId);
+		LinkingContext();
 		~LinkingContext();
 
 		void AddLink(NetworkObject* obj, NetworkId id);

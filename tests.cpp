@@ -1,3 +1,4 @@
+#include <ReplicationManager.h>
 
 int main()
 {

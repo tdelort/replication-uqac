@@ -11,7 +11,7 @@ namespace uqac::replication
     {
     private:
         ClassRegistry();
-        std::map<uint32_t, std::function<NetworkObject(void)>> reg;
+        std::map<uint32_t, std::function<NetworkObject*(void)>> reg;
 
     public:
         ClassRegistry(const ClassRegistry&) = delete;
@@ -26,8 +26,20 @@ namespace uqac::replication
         }
 
         template<typename T>
-        static void Register<T>(std::function<NetworkObject(void)>);
+        static void Register(std::function<NetworkObject*(void)>);
 
-        static NetworkObject Create(uint32_t classID);
+        template<typename T>
+        static NetworkObject Create();
     };
 }
+
+/*
+    //coté server
+    Rm rm;
+    Classreg::Regsiter<Player>(callback)
+    rm.Create<Player>(/metadata/)
+    // dans ↑
+    Player* p = Classreg::Create<Player>(...)
+    linkingContext.addlink(player)
+    set.insert(player)
+*/

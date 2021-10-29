@@ -15,6 +15,9 @@ namespace uqac::replication
 		ReplicationManager();
 		~ReplicationManager();
 
+		template<typename T>
+		T Create();
+
 		void Update();
 	};
 }

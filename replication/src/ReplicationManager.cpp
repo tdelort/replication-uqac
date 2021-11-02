@@ -1,20 +1,23 @@
 #include "ReplicationManager.h"
 
-ReplicationManager::ReplicationManager()
+namespace uqac::replication
 {
-
-}
-
-ReplicationManager::~ReplicationManager()
-{
-
-}
-
-void ReplicationManager::Update()
-{
-    for (auto itr = m_obj.begin(); itr != m_obj.end(); itr++)
+    ReplicationManager::ReplicationManager()
     {
-        //on verra plus tard
+
+    }
+
+    ReplicationManager::~ReplicationManager()
+    {
+
+    }
+
+    void ReplicationManager::Update()
+    {
+        for (auto itr = m_obj.begin(); itr != m_obj.end(); itr++)
+        {
+            //on verra plus tard
+        }
     }
 }
 

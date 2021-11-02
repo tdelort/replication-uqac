@@ -29,7 +29,7 @@ namespace uqac::replication
         static void Register(std::function<NetworkObject*(void)> entry);
 
         template<typename T>
-        static NetworkObject *Create();
+        static T *Create();
     };
 
     ClassRegistry::ClassRegistry()
@@ -45,19 +45,8 @@ namespace uqac::replication
 
     // create a new object of type T using the callback in reg
     template<typename T>
-    NetworkObject *ClassRegistry::Create()
+    T *ClassRegistry::Create()
     {
-        return instance().reg[T::ClassID]();
+        return (T*)instance().reg[T::ClassID]();
     }
 }
-
-/*
-    //coté server
-    Rm rm;
-    Classreg::Regsiter<Player>(callback)
-    rm.Create<Player>(/metadata/)
-    // dans ↑
-    Player* p = Classreg::Create<Player>(...)
-    linkingContext.addlink(player)
-    set.insert(player)
-*/

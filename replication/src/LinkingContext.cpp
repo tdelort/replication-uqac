@@ -37,13 +37,23 @@ namespace uqac::replication
 		AddLink(obj, m_id);
 	}
 
-	NetworkId LinkedId(NetworkObject* obj) 
+	std::optional<NetworkId> LinkedId(NetworkObject* obj) 
 	{
-		return (m_objToId.find(obj))->second;
+		auto search = m_objToId.find(obj);
+		if (search != m_objToId.end()) 
+		{
+			return search->second;
+		}
+		return {};
 	}
 
-	NetworkObject LinkedId(NetworkId id)
+	std::optional<NetworkObject*> LinkedId(NetworkId id)
 	{
-		return (m_idToObj.find(id))->second;
+		auto search = m_idToObj.find(id);
+		if (search != m_idToObj.end())
+		{
+			return search->second;
+		}
+		return {};
 	}
 }

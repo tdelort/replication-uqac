@@ -18,6 +18,7 @@ namespace uqac::game
 
         Enemy();
 
+        uint32_t ClassId() override;
         void Write(uqac::serialisation::Serializer* s) override;
         void Read(uqac::serialisation::Deserializer* s) override;
         void Destroy() override;
@@ -26,6 +27,10 @@ namespace uqac::game
     Enemy::Enemy()
         : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_vie(100), m_type(Sbire)
     { }
+
+    uint32_t Enemy::ClassId() {
+        return ClassID;
+    }
 
     void Enemy::Write(uqac::serialisation::Serializer* s)
     {

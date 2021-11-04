@@ -27,6 +27,7 @@ namespace uqac::game
 
         Player();
 
+        uint32_t ClassId() override;
         void Write(uqac::serialisation::Serializer* s) override;
         void Read(uqac::serialisation::Deserializer* s) override;
         void Destroy() override;
@@ -35,6 +36,10 @@ namespace uqac::game
     Player::Player()
         : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_taille({1, 1, 1}), m_vie(100), m_armure(0), m_argent(0), m_nom("")
     { }
+
+    uint32_t Player::ClassId() {
+        return ClassID;
+    }
 
     void Player::Write(uqac::serialisation::Serializer* s)
     {

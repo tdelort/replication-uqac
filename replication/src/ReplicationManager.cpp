@@ -1,6 +1,8 @@
 #include "ReplicationManager.h"
 #include "Protocol.h"
 #include <Serializer.h>
+#include <iostream>
+#include <optional>
 
 namespace uqac::replication
 {
@@ -28,7 +30,13 @@ namespace uqac::replication
 
         for (auto itr = m_obj.begin(); itr != m_obj.end(); itr++)
         {
-            // On délègue la sérialisation aux classes
+            auto option = m_context.LinkedId(*itr);
+            if (option.has_value()) {
+                std::cerr << "ERROR" << std::endl;
+                exit(1);
+            }
+            ser.Serialize(static_cast<uint32_t>(option.value()));
+            ser.Serialize(static_cast<uint32_t>((*itr)->ClassId()));
             (*itr)->Write(&ser);
         }
 

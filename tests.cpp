@@ -3,40 +3,32 @@
 #include <ReplicationManager.h>
 
 #include "Player.h"
+#include "Enemy.h"
 
 #include <iostream>
 
 int main()
 {
-    /*
-        //coté server
-        Rm rm;
-        Classreg::Regsiter<Player>(callback)
-        rm.Create<Player>(/metadata/)
-        // dans ↑
-        Player* p = Classreg::Create<Player>(...)
-        linkingContext.addlink(player)
-        set.insert(player)
-    */
-    uqac::replication::ReplicationManager replicationManager;
-    uqac::replication::ClassRegistry::Register<uqac::game::Player>([]() -> uqac::replication::NetworkObject* { return new uqac::game::Player(); });
+    std::cout << "Lancement" << std::endl;
 
-    // After receiving a packet, the ReplicationManager will call the callback
-    // function of the class that is registered to the packet type.
-    // The callback function will be called with the packet as a parameter.
-    // The callback function should return a pointer to the object that
-    // should be replicated.
-    // If the callback function returns nullptr, the packet will not be
-    // replicated.
-    // The ReplicationManager will then call the Replicate function of the
-    // object to replicate the packet.
-    // The Replicate function should return a pointer to the object that
-    // should be replicated.
+    Player p;
+    p.m_nom = "Jean";
+    p.m_vie = 300;
+    p.m_armure = 0;
+    p.m_argent = 100;
+    p.m_position = { 10, 0, 0 };
+    p.m_taille = { 1, 0.5, 2 };
+    p.m_rotation = { 0.4964001f, 0.7791921f, 0.3227519f, -0.2056157f };
+    uqac::serialisation::Serializer s;
+    p.Write(&s);
+    uqac::serialisation::Deserializer ds (s.GetBuffer(), s.GetBufferSize());
+    Player p2;
+    p2.read(&ds);
 
-    //inside the On Message callback function of the USocket server
-    // On Hello :
-    uqac::game::Player* p = replicationManager.Create<uqac::game::Player>(/*metadata*/);
-    p->Read();
+    std::cout << "vie : " << p2.m_vie << std::endl;
+    std::cout << "money : " << p2.m_argent << std::endl;
+    std::cout << "pos : " << p2.m_position.x << " " << p2.m_position.y << " " << p2.m_position.z << std::endl;
+    std::cout << "rot : " << p2.m_rotation.x << " " << p2.m_rotation.y << " " << p2.m_rotation.z << " " << p2.m_rotation.w << std::endl;
 
     return 0;
 }

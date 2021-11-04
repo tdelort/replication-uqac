@@ -23,8 +23,8 @@ namespace uqac::game
 
         Player();
 
-        void Write() override;
-        void Read() override;
+        void Write(uqac::serialisation::Serializer* s) override;
+        void Read(uqac::serialisation::Deserializer* s) override;
         void Destroy() override;
     };
 
@@ -32,7 +32,7 @@ namespace uqac::game
         : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_taille({1, 1, 1}), m_vie(100), m_armure(0), m_argent(0), m_nom("")
     { }
 
-    void Player::Write(uqac::serialisation::Serializer s)
+    void Player::Write(uqac::serialisation::Serializer* s)
     {
         uqac::serialisation::IntCompressor vieComp(0, 300);
         uqac::serialisation::IntCompressor armureComp(0, 50);
@@ -41,17 +41,17 @@ namespace uqac::game
         uqac::serialisation::VectCompressor tailleComp({ 0, 0, 0 }, { 10, 10, 20 }, { 3, 3, 3 });
         uqac::serialisation::QuatCompressor rotationComp;
 
-        vieComp.Compress(&s, m_vie);
-        armorComp.Compress(&s, m_armure);
-        moneyComp.Compress(&s, m_argent);
-        positionComp.Compress(&s, _position);
-        tailleComp.Compress(&s, m_taille);
-        rotationComp.Compress(&s, m_rotation);
+        vieComp.Compress(s, m_vie);
+        armorComp.Compress(s, m_armure);
+        moneyComp.Compress(s, m_argent);
+        positionComp.Compress(s, _position);
+        tailleComp.Compress(s, m_taille);
+        rotationComp.Compress(s, m_rotation);
 
         std::cout << "Write" << std::endl;
     }
 
-    void Player::Read(uqac::serialisation::Deserializer s)
+    void Player::Read(uqac::serialisation::Deserializer* s)
     {
         uqac::serialisation::IntCompressor vieComp(0, 300);
         uqac::serialisation::IntCompressor armorComp(0, 50);
@@ -60,14 +60,12 @@ namespace uqac::game
         uqac::serialisation::VectCompressor tailleComp({ 0, 0, 0 }, { 10, 10, 20 }, { 3, 3, 3 });
         uqac::serialisation::QuatCompressor rotationComp;
 
-        Player p;
-
-        p.m_vie = vieComp.Decompress(&s);
-        p.m_armure = armorComp.Decompress(&s);
-        p.m_argent = moneyComp.Decompress(&s);
-        p.m_position = positionComp.Decompress(&s);
-        p.m_taille = tailleComp.Decompress(&s);
-        p.m_rotation = rotationComp.Decompress(&s);
+        m_vie = vieComp.Decompress(s);
+        m_armure = armorComp.Decompress(s);
+        m_argent = moneyComp.Decompress(s);
+        m_position = positionComp.Decompress(s);
+        m_taille = tailleComp.Decompress(s);
+        m_rotation = rotationComp.Decompress(s);
 
         std::cout << "Read" << std::endl;
     }

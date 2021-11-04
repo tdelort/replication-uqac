@@ -15,5 +15,29 @@ namespace uqac::game
         int m_vie; // vie entre 0 et 1000
         enum class Type {Boss, Sbire};
         Type m_type;
+
+        Enemy();
     };
+
+    Enemy::Enemy()
+        : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_vie(100), m_type(Type::Sbire)
+    { }
+
+    void Enemy::Write()
+    {
+        //TODO
+        std::cout << "Write" << std::endl;
+    }
+
+    void Enemy::Read()
+    {
+        //TODO
+        std::cout << "Read" << std::endl;
+    }
+
+    void Enemy::Destroy()
+    {
+        //TODO
+        std::cout << "Destroy" << std::endl;
+    }
 }

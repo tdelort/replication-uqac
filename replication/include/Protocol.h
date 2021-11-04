@@ -6,5 +6,5 @@ namespace uqac::replication
         Sync = 0x01,
         Bye = 0x02,
         PacketType_Max
-    }
+    };
 }

@@ -19,6 +19,7 @@ namespace uqac::replication
 		T* Create();
 
 		void Update();
+		void Receive();
 	};
 
 	template<typename T>

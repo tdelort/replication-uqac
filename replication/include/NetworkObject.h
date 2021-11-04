@@ -1,5 +1,8 @@
 #pragma once
 
+#include <Serializer.h>
+#include <Deserializer.h>
+
 namespace uqac::replication
 {
     class NetworkObject

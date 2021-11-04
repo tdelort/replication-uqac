@@ -2,6 +2,7 @@
 
 #include "NetworkObject.h"
 #include <map>
+#include <optional>
 
 namespace uqac::replication 
 {

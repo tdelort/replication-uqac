@@ -13,7 +13,7 @@ namespace uqac::game
         Vector3D m_position; // X Y entre -500 et 500 et Z entre 0 et 100
         Quaternion m_rotation;
         int m_vie; // vie entre 0 et 1000
-        enum class Type {Boss, Sbire};
+        enum Type {Boss, Sbire};
         Type m_type;
 
         Enemy();
@@ -54,7 +54,7 @@ namespace uqac::game
         e.m_vie = vieComp.Decompress(s);
         e.m_position = positionComp.Decompress(s);
         e.m_rotation = rotationComp.Decompress(s);
-        e.m_type = typeComp.Decompress(s);
+        e.m_type = (Type)typeComp.Decompress(s);
 
         std::cout << "Read" << std::endl;
     }

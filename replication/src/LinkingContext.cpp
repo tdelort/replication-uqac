@@ -1,6 +1,8 @@
 #include "LinkingContext.h"
 #include "NetworkObject.h"
 
+#include <optional>
+
 namespace uqac::replication
 {
 	LinkingContext::LinkingContext()
@@ -37,7 +39,7 @@ namespace uqac::replication
 		AddLink(obj, m_id);
 	}
 
-	std::optional<NetworkId> LinkedId(NetworkObject* obj) 
+	std::optional<LinkingContext::NetworkId> LinkingContext::LinkedId(NetworkObject* obj) 
 	{
 		auto search = m_objToId.find(obj);
 		if (search != m_objToId.end()) 
@@ -47,7 +49,7 @@ namespace uqac::replication
 		return {};
 	}
 
-	std::optional<NetworkObject*> LinkedId(NetworkId id)
+	std::optional<NetworkObject*> LinkingContext::LinkedObj(NetworkId id)
 	{
 		auto search = m_idToObj.find(id);
 		if (search != m_idToObj.end())

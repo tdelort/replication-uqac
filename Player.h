@@ -1,7 +1,11 @@
 #pragma once
 
-#include "framework.h"
 #include <NetworkObject.h>
+
+#include <IntCompressor.h>
+#include <FloatCompressor.h>
+#include <QuatCompressor.h>
+#include <VectCompressor.h>
 
 #include <string>
 #include <iostream>
@@ -42,9 +46,9 @@ namespace uqac::game
         uqac::serialisation::QuatCompressor rotationComp;
 
         vieComp.Compress(s, m_vie);
-        armorComp.Compress(s, m_armure);
-        moneyComp.Compress(s, m_argent);
-        positionComp.Compress(s, _position);
+        armureComp.Compress(s, m_armure);
+        argentComp.Compress(s, m_argent);
+        positionComp.Compress(s, m_position);
         tailleComp.Compress(s, m_taille);
         rotationComp.Compress(s, m_rotation);
 

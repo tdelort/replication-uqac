@@ -11,7 +11,7 @@ int main()
 {
     std::cout << "Lancement" << std::endl;
 
-    Player p;
+    uqac::game::Player p;
     p.m_nom = "Jean";
     p.m_vie = 300;
     p.m_armure = 0;
@@ -22,8 +22,8 @@ int main()
     uqac::serialisation::Serializer s;
     p.Write(&s);
     uqac::serialisation::Deserializer ds (s.GetBuffer(), s.GetBufferSize());
-    Player p2;
-    p2.read(&ds);
+    uqac::game::Player p2;
+    p2.Read(&ds);
 
     std::cout << "vie : " << p2.m_vie << std::endl;
     std::cout << "money : " << p2.m_argent << std::endl;

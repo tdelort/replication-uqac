@@ -8,4 +8,4 @@ add_executable(Tests tests.cpp)
 
 add_subdirectory(externals)
 add_subdirectory(replication)
-target_link_libraries(Tests UReplication)
+target_link_libraries(Tests UReplication USocket USerialisation)

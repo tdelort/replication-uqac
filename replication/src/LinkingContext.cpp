@@ -24,11 +24,12 @@ namespace uqac::replication
 
 	void LinkingContext::DeleteObj(NetworkObject* obj)
 	{
-		// TODO
-		//auto search1 = m_idToObj.find(obj);
-		//m_idToObj.erase(search1);
-		//auto search2 = m_objToId.find(obj);
-		//m_objToId.erase(search2);
+		auto search = m_objToId.find(obj);
+		if (search != m_objToId.end()) 
+		{
+			m_idToObj.erase(search->second);
+			m_objToId.erase(search);
+		}
 	}
 
 	void LinkingContext::AddObj(NetworkObject* obj)

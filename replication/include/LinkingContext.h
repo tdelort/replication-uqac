@@ -16,8 +16,8 @@ namespace uqac::replication
 		void DeleteObj(NetworkObject* obj);
 		void AddObj(NetworkObject* obj);
 
-		void LinkedId(NetworkObject* obj);
-		void LinkedObj(NetworkId id);
+		NetworkId LinkedId(NetworkObject* obj);
+		NetworkObject* LinkedObj(NetworkId id);
 	private:
 		std::map<NetworkId, NetworkObject*> m_idToObj;
 		std::map<NetworkObject*, NetworkId> m_objToId;

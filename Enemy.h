@@ -24,7 +24,7 @@ namespace uqac::game
     };
 
     Enemy::Enemy()
-        : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_vie(100), m_type(Type::Sbire)
+        : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_vie(100), m_type(Sbire)
     { }
 
     void Enemy::Write(uqac::serialisation::Serializer* s)
@@ -49,12 +49,10 @@ namespace uqac::game
         uqac::serialisation::QuatCompressor rotationComp;
         uqac::serialisation::IntCompressor typeComp(0, 1);
 
-        Enemy e;
-
-        e.m_vie = vieComp.Decompress(s);
-        e.m_position = positionComp.Decompress(s);
-        e.m_rotation = rotationComp.Decompress(s);
-        e.m_type = (Type)typeComp.Decompress(s);
+        m_vie = vieComp.Decompress(s);
+        m_position = positionComp.Decompress(s);
+        m_rotation = rotationComp.Decompress(s);
+        m_type = (Type)typeComp.Decompress(s);
 
         std::cout << "Read" << std::endl;
     }

@@ -34,6 +34,16 @@ namespace uqac::replication
 
 	void LinkingContext::AddObj(NetworkObject* obj)
 	{
-		
+		AddLink(obj, m_id);
+	}
+
+	NetworkId LinkedId(NetworkObject* obj) 
+	{
+		return (m_objToId.find(obj))->second;
+	}
+
+	NetworkObject LinkedId(NetworkId id)
+	{
+		return (m_idToObj.find(id))->second;
 	}
 }

@@ -32,7 +32,7 @@ namespace uqac::replication
         {
             auto option = m_context.LinkedId(*itr);
             if (option.has_value()) {
-                std::cerr << "ERROR" << std::endl;
+                std::cerr << "Error : No id found with object in LinkingContext" << std::endl; // print l'id ?
                 exit(1);
             }
             ser.Serialize(static_cast<uint32_t>(option.value()));
@@ -47,7 +47,7 @@ namespace uqac::replication
 
     void ReplicationManager::Receive()
     {
-        // Récupérer le paquet jsp comment
+        // Même si on vient à bouger tout ça, ça pourra toujorus être utile
         char* buffer = "aaabbbccc"; // = qqchose
         unsigned int size = 20; // = qqchose d'autre
         uqac::serialisation::Deserializer deser(buffer, size);
@@ -55,39 +55,26 @@ namespace uqac::replication
         uint32_t idProto = deser.Deserialize<uint32_t>();
         if (idProto != 0xABABBACA)
         {
+            // Le paquet ne nous concerne pas, donc on return
             return;
         }
 
         uint8_t idPack = deser.Deserialize<uint8_t>();
         
         uint8_t type = deser.Deserialize<uint8_t>();
-        switch (type){
+
+        switch (type)
+        {
             case PacketType::Hello:
                 // Créer
                 break;
             case PacketType::Sync:
-                
+                //sync(deser);
                 break;
             case PacketType::Bye:
                 // Détruire
                 break;
         }
-
     }
-}
 
-/*
-A celui qui récupèrera les paquets :
-récupération du paquet grâce à l'ID protocole
-utilité numéro paquet = ?
-pour tout ce qui est dans le paquet :
-    on récupère la classe de l'objet (utilité ?)
-    on récupère l'ID de l'objet
-    on va cherche l'objet par ID dans le Linking context
-    si l'objet n'existe pas :
-        on le crée avec les valeurs du paquet
-    sinon :
-        on récupère les valeurs du paquet
-        on change les valeurs de l'objet qui doivent être changées
-voilà les objets sont à jour !
-*/
+}

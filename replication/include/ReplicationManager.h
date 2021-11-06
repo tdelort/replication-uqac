@@ -37,4 +37,6 @@ namespace uqac::replication
 
 		return obj;
 	}
+
+	void sync(uqac::serialisation::Deserializer deser);
 }

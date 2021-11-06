@@ -9,14 +9,14 @@ void sync(uqac::serialisation::Deserializer deser, uqac::replication::LinkingCon
         uint32_t idClass = deser.Deserialize<uint32_t>();
 
         auto option = context.LinkedObj(testFin);
-        if (option.has_value()) {
-            std::cerr << "Error : No object found with id in LinkingContext" << std::endl; // print l'id ?
-            exit(1);
+        if (!option.has_value()) {
+            //créer l'objet
         }
         
         switch (idClass)
         {
             // Les casts que je fais là fonctionnent pas, donc il faudra peut être faire une méthode templatée, mais jsp comment faire
+            // answer : c'est la classe registery qui fait ça
             case 'PLAY':
                 uqac::game::Player play = static_cast<uqac::game::Player>(*option.value());
                 play.Read(&deser);

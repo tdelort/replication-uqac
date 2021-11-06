@@ -63,7 +63,7 @@ namespace uqac::replication
         
         uint8_t type = deser.Deserialize<uint8_t>();
 
-        switch (type)
+        switch ((PacketType) type)
         {
             case PacketType::Hello:
                 // Créer

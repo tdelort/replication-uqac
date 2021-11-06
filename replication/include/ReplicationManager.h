@@ -31,10 +31,6 @@ namespace uqac::replication
 		m_obj.insert(obj);
 		// Add it to the context
 		m_context.AddObj((NetworkObject*)obj);
-
-		//La partie reseau
-		//TODO ?
-
 		return obj;
 	}
 

@@ -23,15 +23,12 @@ namespace uqac::replication
         uint32_t idProto = 0xABABBACA;
         ser.Serialize(idProto);
 
-        uint8_t idPack = 0x02; // Aucune idée ?
-        ser.Serialize(idPack);
-
         ser.Serialize(static_cast<uint8_t>(PacketType::Sync));
 
         for (auto itr = m_obj.begin(); itr != m_obj.end(); itr++)
         {
             auto option = m_context.LinkedId(*itr);
-            if (option.has_value()) {
+            if (!option.has_value()) {
                 std::cerr << "Error : No id found with object in LinkingContext" << std::endl; // print l'id ?
                 exit(1);
             }

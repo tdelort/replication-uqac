@@ -10,9 +10,9 @@
 #include <string>
 #include <iostream>
 
-namespace uqac::game
+namespace uqac::replication
 {
-    class Player : public uqac::replication::NetworkObject
+    class Player : public NetworkObject
     {
     public:
         enum {ClassID = 'PLAY'};

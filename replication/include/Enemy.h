@@ -1,11 +1,18 @@
 #pragma once
 
-#include "framework.h"
 #include <NetworkObject.h>
 
-namespace uqac::game
+#include <IntCompressor.h>
+#include <FloatCompressor.h>
+#include <QuatCompressor.h>
+#include <VectCompressor.h>
+
+#include <string>
+#include <iostream>
+
+namespace uqac::replication
 {
-    class Enemy : public uqac::replication::NetworkObject
+    class Enemy : public NetworkObject
     {
     public:
         enum {ClassID = 'ENEM'};

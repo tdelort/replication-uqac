@@ -1,9 +1,9 @@
 #pragma once
 
+#include "NetworkObject.h"
+
 #include <functional>
 #include <map>
-
-#include "NetworkObject.h"
 
 namespace uqac::replication
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <NetworkObject.h>
+#include "NetworkObject.h"
 
 #include <IntCompressor.h>
 #include <FloatCompressor.h>

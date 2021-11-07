@@ -17,7 +17,7 @@ namespace uqac::replication
 {
 
     Player::Player()
-        : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_taille({1, 1, 1}), m_vie(100), m_armure(0), m_argent(0), m_nom("")
+        : m_position({-400, 0, 90}), m_rotation({0.4964001f, 0.7791921f, 0.3227519f, -0.2056157f}), m_taille({2, 3, 5}), m_vie(100), m_armure(25), m_argent(6789), m_nom("")
     { }
 
     uint32_t Player::ClassId() {

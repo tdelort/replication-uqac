@@ -4,9 +4,7 @@ project(ReplicationTests VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Client client.cpp)
-add_executable(Serveur serveur.cpp)
+add_executable(Main main.cpp Client.cpp Serveur.cpp)
 add_subdirectory(externals)
 add_subdirectory(replication)
-target_link_libraries(Client UReplication USocket USerialisation)
-target_link_libraries(Serveur UReplication USocket USerialisation)
+target_link_libraries(Main UReplication USocket USerialisation)

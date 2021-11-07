@@ -1,3 +1,5 @@
+#include "Client.h"
+
 #include <ReplicationManager.h>
 #include <ClassRegistry.h>
 #include <USocket.h>
@@ -8,25 +10,27 @@
 
 #include <iostream>
 
-#define ADDR "127.0.0.1"
-#define PORT "42069"
-
-int main() 
+Client::Client(char* addr, char* port)
+    : rm(addr, port, uqac::replication::ReplicationManager::Mode::CLIENT)
 {
     uqac::replication::ClassRegistry::Register<uqac::replication::Player>([](){ return new uqac::replication::Player(); });
     uqac::replication::ClassRegistry::Register<uqac::replication::Enemy>([](){ return new uqac::replication::Enemy(); });
-	uqac::replication::ReplicationManager rm(ADDR, PORT, uqac::replication::ReplicationManager::Mode::CLIENT);
+}
 
+Client::~Client()
+{
+    //dtor
+}	
+
+bool Client::Update()
+{
     std::string dummy;
-	while (true)
-	{
-        dummy = "";
-        std::cin >> dummy;
-        if(dummy == "exit")
-            break;
+    dummy = "";
+    std::cin >> dummy;
+    if(dummy == "exit")
+        return false;
 
-		rm.Update();
-	}
+    rm.Update();
 
-	return 0;
+    return true;
 }

@@ -48,6 +48,12 @@ namespace uqac::replication
         m_type = (Type)typeComp.Decompress(s);
 
         std::cout << "Read Enemy" << std::endl;
+
+        std::cout << "Position : " << m_position.x << " " << m_position.y << " " << m_position.z << std::endl;
+        std::cout << "Rotation : " << m_rotation.x << " " << m_rotation.y << " " << m_rotation.z << " " << m_rotation.w << std::endl;
+        std::cout << "Vie : " << m_vie << std::endl;
+        std::cout << "Type : " << m_type << std::endl;
+
     }
 
     void Enemy::Destroy()

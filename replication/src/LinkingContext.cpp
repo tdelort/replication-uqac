@@ -21,7 +21,6 @@ namespace uqac::replication
 	{
 		m_idToObj.insert({ id, obj });
 		m_objToId.insert({ obj, id });
-		m_id += 1;
 	}
 
 	void LinkingContext::DeleteObj(NetworkObject* obj)
@@ -37,6 +36,7 @@ namespace uqac::replication
 	void LinkingContext::AddObj(NetworkObject* obj)
 	{
 		AddLink(obj, m_id);
+		m_id += 1;
 	}
 
 	std::optional<LinkingContext::NetworkId> LinkingContext::LinkedId(NetworkObject* obj) 

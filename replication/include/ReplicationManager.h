@@ -19,6 +19,7 @@ namespace uqac::replication
 		T* Create();
 
 		void Update();
+		void Receive();
 	};
 
 	template<typename T>
@@ -30,10 +31,8 @@ namespace uqac::replication
 		m_obj.insert(obj);
 		// Add it to the context
 		m_context.AddObj((NetworkObject*)obj);
-
-		//La partie reseau
-		//TODO ?
-
 		return obj;
 	}
+
+	void sync(uqac::serialisation::Deserializer deser);
 }

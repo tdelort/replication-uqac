@@ -10,7 +10,7 @@ namespace uqac::replication
     class ClassRegistry
     {
     private:
-        ClassRegistry();
+        ClassRegistry() = default;
         std::map<uint32_t, std::function<NetworkObject*(void)>> reg;
 
     public:
@@ -31,10 +31,6 @@ namespace uqac::replication
         template<typename T>
         static T *Create();
     };
-
-    ClassRegistry::ClassRegistry()
-        : reg()
-    {}
 
     // Adds entry into reg map
     template<typename T>

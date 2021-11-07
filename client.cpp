@@ -13,8 +13,8 @@
 
 int main() 
 {
-    //uqac::replication::ClassRegistry::Register<uqac::replication::Player>([](){ return new uqac::replication::Player(); });
-    //uqac::replication::ClassRegistry::Register<uqac::replication::Enemy>([](){ return new uqac::replication::Enemy(); });
+    uqac::replication::ClassRegistry::Register<uqac::replication::Player>([](){ return new uqac::replication::Player(); });
+    uqac::replication::ClassRegistry::Register<uqac::replication::Enemy>([](){ return new uqac::replication::Enemy(); });
 	uqac::replication::ReplicationManager rm(ADDR, PORT, uqac::replication::ReplicationManager::Mode::CLIENT);
 
     std::string dummy;

@@ -12,8 +12,19 @@
 #include <string>
 #include <iostream>
 
+
 namespace uqac::replication
 {
+    void Print(const Enemy& e)
+    {
+        std::cout << "########## Enemy ###########" << std::endl;
+
+        std::cout << "Position : " << e.m_position.x << " " << e.m_position.y << " " << e.m_position.z << std::endl;
+        std::cout << "Rotation : " << e.m_rotation.x << " " << e.m_rotation.y << " " << e.m_rotation.z << " " << e.m_rotation.w << std::endl;
+        std::cout << "Vie      : " << e.m_vie << std::endl;
+        std::cout << "Type     : " << e.m_type << std::endl;
+    }
+
     Enemy::Enemy()
         : m_position({0, 0, 0}), m_rotation({0, 0, 0, 1}), m_vie(100), m_type(Sbire)
     { }
@@ -34,7 +45,7 @@ namespace uqac::replication
         rotationComp.Compress(s, m_rotation);
         typeComp.Compress(s, m_type);
 
-        std::cout << "Write" << std::endl;
+        Print(*this);
     }
 
     void Enemy::Read(uqac::serialisation::Deserializer* s)
@@ -49,13 +60,7 @@ namespace uqac::replication
         m_rotation = rotationComp.Decompress(s);
         m_type = (Type)typeComp.Decompress(s);
 
-        std::cout << "Read Enemy" << std::endl;
-
-        std::cout << "Position : " << m_position.x << " " << m_position.y << " " << m_position.z << std::endl;
-        std::cout << "Rotation : " << m_rotation.x << " " << m_rotation.y << " " << m_rotation.z << " " << m_rotation.w << std::endl;
-        std::cout << "Vie : " << m_vie << std::endl;
-        std::cout << "Type : " << m_type << std::endl;
-
+        Print(*this);
     }
 
     void Enemy::Destroy()

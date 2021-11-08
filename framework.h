@@ -1,6 +1,8 @@
 inline float frand(int lo, int hi)
 {
-    return lo + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(hi-lo)));
+    float num = (float)rand();
+    float den = (float)RAND_MAX/(hi - lo);
+    return lo + num / den;
 }
 
 // from stack overflow

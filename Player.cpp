@@ -15,8 +15,22 @@
 #include <string>
 #include <iostream>
 
+
+
 namespace uqac::replication
 {
+    void Print(const Player& p)
+    {
+        std::cout << "########## Player ##########" << std::endl;
+
+        std::cout << "Position : " << p.m_position.x << " " << p.m_position.y << " " << p.m_position.z << std::endl;
+        std::cout << "Rotation : " << p.m_rotation.x << " " << p.m_rotation.y << " " << p.m_rotation.z << " " << p.m_rotation.w << std::endl;
+        std::cout << "Taille   : " << p.m_taille.x   << " " << p.m_taille.y   << " " << p.m_taille.z << std::endl;
+        std::cout << "Vie      : " << p.m_vie << std::endl;
+        std::cout << "Armure   : " << p.m_armure << std::endl;
+        std::cout << "Argent   : " << p.m_argent << std::endl;
+        std::cout << "Nom      : " << p.m_nom << std::endl;
+    }
 
     Player::Player()
         : m_position({-400, 0, 90}), m_rotation({0.4964001f, 0.7791921f, 0.3227519f, -0.2056157f}), m_taille({2, 3, 5}), m_vie(100), m_armure(25), m_argent(6789), m_nom("")
@@ -42,15 +56,7 @@ namespace uqac::replication
         tailleComp.Compress(s, m_taille);
         rotationComp.Compress(s, m_rotation);
 
-        std::cout << "Write" << std::endl;
-
-        std::cout << "Position : " << m_position.x << " " << m_position.y << " " << m_position.z << std::endl;
-        std::cout << "Rotation : " << m_rotation.x << " " << m_rotation.y << " " << m_rotation.z << " " << m_rotation.w << std::endl;
-        std::cout << "Taille : " << m_taille.x << " " << m_taille.y << " " << m_taille.z << std::endl;
-        std::cout << "Vie : " << m_vie << std::endl;
-        std::cout << "Armure : " << m_armure << std::endl;
-        std::cout << "Argent : " << m_argent << std::endl;
-        std::cout << "Nom : " << m_nom << std::endl;
+        Print(*this);
     }
 
     void Player::Read(uqac::serialisation::Deserializer* s)
@@ -69,20 +75,11 @@ namespace uqac::replication
         m_taille = tailleComp.Decompress(s);
         m_rotation = rotationComp.Decompress(s);
 
-        std::cout << "Read Player" << std::endl;
-
-        std::cout << "Position : " << m_position.x << " " << m_position.y << " " << m_position.z << std::endl;
-        std::cout << "Rotation : " << m_rotation.x << " " << m_rotation.y << " " << m_rotation.z << " " << m_rotation.w << std::endl;
-        std::cout << "Taille : " << m_taille.x << " " << m_taille.y << " " << m_taille.z << std::endl;
-        std::cout << "Vie : " << m_vie << std::endl;
-        std::cout << "Armure : " << m_armure << std::endl;
-        std::cout << "Argent : " << m_argent << std::endl;
-        std::cout << "Nom : " << m_nom << std::endl;
+        Print(*this);
     }
 
     void Player::Destroy()
     {
-        //TODO
         std::cout << "Destroy" << std::endl;
     }
 
@@ -90,7 +87,7 @@ namespace uqac::replication
     {
         m_vie = frand(0, 300);
         m_armure = frand(0, 50);
-        m_argent = frand(-99999.99, 99999.99);
+        m_argent = frand(-99999, 99999);
         m_position.x = frand(-500, 500);
         m_position.y = frand(-500, 500);
         m_position.z = frand(0, 100);

@@ -20,6 +20,12 @@ namespace uqac::replication
     ReplicationManager::~ReplicationManager()
     { 
         // TODO delete everything in the set m_obj
+        for(auto it = m_obj.begin(); it != m_obj.end(); ++it)
+        {
+            uqac::replication::NetworkObject* obj = *it;
+            if(obj)
+                delete obj;
+        }
     }
 
     NetworkObject* ReplicationManager::Create(uint32_t classId)
@@ -64,7 +70,6 @@ namespace uqac::replication
 
         for(auto* connection : connections)
         {
-            std::cout << "Sending one buffer" << std::endl;
             connection->Send(data);
         }
     }

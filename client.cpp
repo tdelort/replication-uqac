@@ -20,6 +20,7 @@ Client::Client(char* addr, char* port)
         [this](uqac::network::Connection* c, uqac::span<char> msg, std::vector<uqac::network::Connection*> connections) 
         {
             rm.OnBuffer(msg);
+            std::cout << std::endl << std::endl;
         },
         // On Disconnect
         [](uqac::network::Connection* c)
@@ -34,6 +35,8 @@ Client::Client(char* addr, char* port)
     };
     uqac::network::Connection* c = sock.Connect(addr, port, uqac::network::Connection::Type::TCP);
     c->AddConfig(config);
+
+    std::cout << "To close the client, type exit" << std::endl;
 }
 
 Client::~Client()

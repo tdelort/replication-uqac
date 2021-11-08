@@ -28,7 +28,7 @@ Serveur::Serveur(char* port)
 
             std::unordered_set<uqac::replication::NetworkObject*> objects = rm.GetObjects();
             int nb = objects.size();
-            std::cout << "Nb obj before : " << nb << std::endl;
+
             if(nb == 0)
                 rm.Create<uqac::replication::Player>();
             else if(nb == 1)
@@ -39,11 +39,13 @@ Serveur::Serveur(char* port)
             else
                 return;
 
-            std::cout << "Nb obj after : " << objects.size() << std::endl;
         }
     };
 
     sock.Listen(port, config);
+
+    std::cout << "To close the server, type exit" << std::endl;
+    std::cout << "To Randomize the values in the network object, type anything else" << std::endl;
 }
 
 Serveur::~Serveur()
@@ -81,6 +83,6 @@ bool Serveur::Update()
     }
 
     rm.Update(sock.GetAllConnections());
-    Sleep(10);
+    std::cout << std::endl << std::endl;
     return true;
 }

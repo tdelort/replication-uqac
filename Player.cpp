@@ -2,6 +2,8 @@
 
 #include "NetworkObject.h"
 
+#include "framework.h"
+
 #include <IntCompressor.h>
 #include <FloatCompressor.h>
 #include <QuatCompressor.h>
@@ -82,6 +84,20 @@ namespace uqac::replication
     {
         //TODO
         std::cout << "Destroy" << std::endl;
+    }
+
+    void Player::Randomize()
+    {
+        m_vie = frand(0, 300);
+        m_armure = frand(0, 50);
+        m_argent = frand(-99999.99, 99999.99);
+        m_position.x = frand(-500, 500);
+        m_position.y = frand(-500, 500);
+        m_position.z = frand(0, 100);
+        m_taille.x = frand(0, 10);
+        m_taille.y = frand(0, 10);
+        m_taille.z = frand(0, 20);
+        m_rotation = RandomQuaternion();
     }
 
 }

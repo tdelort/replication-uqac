@@ -4,6 +4,4 @@ target_sources(UReplication
     PUBLIC
         LinkingContext.cpp
         ReplicationManager.cpp
-        Player.cpp
-        Enemy.cpp
 )

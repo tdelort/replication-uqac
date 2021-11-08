@@ -1,5 +1,6 @@
 #pragma once
 
+#include <USocket.h>
 #include <ReplicationManager.h>
 
 class Serveur
@@ -11,4 +12,5 @@ public:
     bool Update();
 private:
    uqac::replication::ReplicationManager rm; 
+   uqac::network::USocket sock;
 };

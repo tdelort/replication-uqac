@@ -2,6 +2,8 @@
 
 #include "NetworkObject.h"
 
+#include "framework.h"
+
 #include <IntCompressor.h>
 #include <FloatCompressor.h>
 #include <QuatCompressor.h>
@@ -61,4 +63,14 @@ namespace uqac::replication
         //TODO
         std::cout << "Destroy" << std::endl;
     }
+
+    void Enemy::Randomize()
+    {
+        m_vie = frand(0, 1000);
+        m_position.x = frand(-500, 500);
+        m_position.y = frand(-500, 500);
+        m_position.z = frand(0, 100);
+        m_rotation = RandomQuaternion();
+        m_type = static_cast<Enemy::Type>(rand() % 2);
+    }   
 }

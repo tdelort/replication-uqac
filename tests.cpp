@@ -2,8 +2,8 @@
 #include <ClassRegistry.h>
 #include <ReplicationManager.h>
 
-#include <Player.h>
-#include <Enemy.h>
+#include "Player.h"
+#include "Enemy.h"
 
 #include <iostream>
 

@@ -30,16 +30,19 @@ namespace uqac::replication
 
         template<typename T>
         static T *Create();
+
+        static NetworkObject* Create(uint32_t classId)
+        {
+            return instance().reg[classId]();
+        }
     };
 
-    // Adds entry into reg map
     template<typename T>
     void ClassRegistry::Register(std::function<NetworkObject*(void)> entry)
     {
         instance().reg[T::ClassID] = entry;
     }
 
-    // create a new object of type T using the callback in reg
     template<typename T>
     T *ClassRegistry::Create()
     {

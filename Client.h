@@ -10,5 +10,6 @@ public:
 
     bool Update();
 private:
-   uqac::replication::ReplicationManager rm; 
+    uqac::replication::ReplicationManager rm; 
+    uqac::network::USocket sock;
 };
